@@ -1,5 +1,6 @@
 package ch.makery.address.view;
 
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.util.ResourceBundle;
 
@@ -16,22 +17,38 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MoviesOverviewController  {
-	@FXML
-	private ResourceBundle resources;
 
-	@FXML
-	private URL location;
+    @FXML
+    private ResourceBundle resources;
 
-	@FXML
-	private TableView<Movie> movieTable;
+    @FXML
+    private URL location;
 
-	@FXML
-	private TableColumn<Movie, String> genderColumn;
+    @FXML
+    private TextField descriptionText;
 
-	@FXML
-	private TableColumn<Movie, String> titleColumn;
+    @FXML
+    private TextField directorText;
 
-	private ObservableList<Movie> movies;
+    @FXML
+    private TableColumn<Movie, String> genderColumn;
+
+    @FXML
+    private TextField genderText;
+
+    @FXML
+    private TableView<Movie> movieTable;
+
+    @FXML
+    private TableColumn<Movie, String> titleColumn;
+
+    @FXML
+    private TextField titleText;
+
+    @FXML
+    private TextField yearText;
+    
+    private ObservableList<Movie> movies;
 	/**
 	 * Método para inicializar el controlador que se llama cuando se carga el FXML
 	 */

@@ -1,7 +1,7 @@
 package ch.makery.address;
 
 import java.io.IOException;
-
+import java.lang.ModuleLayer.Controller;
 import ch.makery.address.Main;
 import ch.makery.address.model.Person;
 import ch.makery.address.view.MoviesOverviewController;
@@ -14,55 +14,25 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
-	private Stage primaryStage;
 	private BorderPane rootLayout;
-
 	@Override
 	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("AddressApp");
-
-		initRootLayout();
-		showMoviesOverview();
-	}
-
-	public void initRootLayout() {
 		try {
-			// Carga el XML con el diseño principal
+			// Carga el diseño del archivo FXML en la variable rootLayout
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
 
-			// Se añade el diseño principal a la escena
+			Controller menuController = loader.getController();
+			menuController.setRootLayout(rootLayout);
+
+			// Mostramos la escena del BorderPane de la variable rootLayot
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-		} catch (IOException e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void showMoviesOverview() {
-		try {
-			// Cargamos el archivo MoviesOverview
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/MoviesOverview.fxml"));
-			AnchorPane moviesOverview = (AnchorPane) loader.load();
-
-			// Se sitúa en el centro del diseño principal
-			rootLayout.setCenter(moviesOverview);
-			
-			// Damos al controlador acceso a la aplicaicón principal
-	        MoviesOverviewController controller = loader.getController();
-	        controller.setMainApp(this);
-	        
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public Stage getPrimaryStage() {
-		return primaryStage;
 	}
 
 	public static void main(String[] args) {
