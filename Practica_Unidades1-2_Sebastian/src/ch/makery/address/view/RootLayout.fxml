@@ -38,7 +38,7 @@
    <bottom>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="loginButton" layoutX="274.0" mnemonicParsing="false" onAction="#loginPerson" text="Login" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <Button layoutX="274.0" mnemonicParsing="false" onAction="#loginPerson" text="Login" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
          </children>
       </AnchorPane>
    </bottom>

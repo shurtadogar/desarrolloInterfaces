@@ -2,7 +2,7 @@ package ch.makery.address.view;
 
 
 import java.util.ResourceBundle;
-import javax.print.DocFlavor.URL;
+
 import ch.makery.address.model.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,63 +13,63 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 public class MoviesOverviewController  {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private TextField descriptionText;
 
-    @FXML
-    private TableColumn<Movie, String> genderColumn;
+	@FXML
+	private TextField directorText;
 
-    @FXML
-    private TableView<Movie> movieTable;
+	@FXML
+	private TableColumn<Movie, String> genderColumn;
 
-    @FXML
-    private TableColumn<Movie, String> titleColumn;
+	@FXML
+	private TextField genderText;
 
-    @FXML
-    private TextField titleText;
-    
-    @FXML
-    private TextField genderText;
-    
-    @FXML
-    private TextField descriptionText;
+	@FXML
+	private TableView<Movie> movieTable;
 
-    @FXML
-    private TextField directorText;
+	@FXML
+	private TableColumn<Movie, String> titleColumn;
 
-    @FXML
-    private TextField yearText;
-    
-    private ObservableList<Movie> movies = FXCollections.observableArrayList();
+	@FXML
+	private TextField titleText;
+
+	@FXML
+	private TextField yearText;
+
+	private ObservableList<Movie> movies;
+
 	/**
 	 * Método para inicializar el controlador que se llama cuando se carga el FXML
 	 */
 	@FXML
 	private void initialize() {   	
-		
-		 // Asignamos columnas y datos de la tabla
-    	// Se inicializan las cuatro columnas
-		titleColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("title"));
-		genderColumn.setCellValueFactory(new PropertyValueFactory<Movie, String>("gender"));
-		
-		// Se añaden los alumno a la tabla
-		movieTable.getItems().addAll(new Movie("Scary Movie", "Comedia"),
-    			new Movie("Fast and Furious", "Acción"),
-    			new Movie("Expediente Warren", "Terror"));
+
+		movies = FXCollections.observableArrayList();
+		// Asignamos columnas y datos de la tabla
+		// Se inicializan las cuatro columnas
+		this.titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+    	this.genderColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    	
+    	Movie pers1 = new Movie("Scary Movie","Comedia");
+    	Movie pers2 = new Movie("Fast and Furious","Accion");
+    	Movie pers3 = new Movie("Expediente Warren","Terror");
+    	Movie pers4 = new Movie("Spiderman","Accion");
+    	this.movies.add(pers1);
+    	this.movies.add(pers2);
+    	this.movies.add(pers3);
+    	this.movies.add(pers4);
 
 	}
 
-	
 	@FXML
-	private void addMovie(ActionEvent event) {
-
+	void addMovie(ActionEvent event) {
 		try {
 
 			// Obtengo los datos del formulario
@@ -107,26 +107,38 @@ public class MoviesOverviewController  {
 			alert.setContentText("Formato incorrecto");
 			alert.showAndWait();
 		}
-
 	}
 
 	@FXML
-	private void seleccionarMovie(MouseEvent event) {
-
+	void eliminarMovie(ActionEvent event) {
 		// Obtengo la movie seleccionada
 		Movie mov = this.movieTable.getSelectionModel().getSelectedItem();
 
-		// Sino es nula seteo los campos
-		if (mov != null) {
-			this.titleText.setText(mov.getTitle());
-			this.genderText.setText(mov.getGender());
-		}
+		// Si la movie es nula, lanzo error
+		if (mov == null) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setTitle("Error");
+			alert.setContentText("Debes seleccionar una movie");
+			alert.showAndWait();
+		} else {
 
+			// La elimino de la lista
+			this.movies.remove(mov);
+			// Refresco la lista
+			this.movieTable.refresh();
+
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setTitle("Info");
+			alert.setContentText("movie eliminada");
+			alert.showAndWait();
+
+		}
 	}
 
 	@FXML
-	private void modificarMovie(ActionEvent event) {
-
+	void modificarMovie(ActionEvent event) {
 		// Obtengo la movie seleccionada
 		Movie mov = this.movieTable.getSelectionModel().getSelectedItem();
 
@@ -181,37 +193,5 @@ public class MoviesOverviewController  {
 			}
 
 		}
-
 	}
-
-	@FXML
-	private void eliminarMovie(ActionEvent event) {
-
-		// Obtengo la movie seleccionada
-		Movie mov = this.movieTable.getSelectionModel().getSelectedItem();
-
-		// Si la movie es nula, lanzo error
-		if (mov == null) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setHeaderText(null);
-			alert.setTitle("Error");
-			alert.setContentText("Debes seleccionar una movie");
-			alert.showAndWait();
-		} else {
-
-			// La elimino de la lista
-			this.movies.remove(mov);
-			// Refresco la lista
-			this.movieTable.refresh();
-
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setHeaderText(null);
-			alert.setTitle("Info");
-			alert.setContentText("movie eliminada");
-			alert.showAndWait();
-
-		}
-
-	}
-
 }
