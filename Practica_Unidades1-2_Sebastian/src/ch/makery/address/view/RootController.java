@@ -14,13 +14,19 @@ public class RootController {
 	private ResourceBundle resources;
 
 	private BorderPane rootLayout;
+	
+
+	@FXML
+	void initialize() {
+
+	}
 
 	@FXML
 	void addMovie(ActionEvent event) {
 		try {
 			// Cargamos el archivo Controles Dinámicos
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(RootController.class.getResource("MoviesOverview.fxml"));
+			loader.setLocation(RootController.class.getResource("AddMoviesOverview.fxml"));
 			AnchorPane listadoControles = (AnchorPane) loader.load();
 			// Se sitúa en el centro del diseño principal
 			rootLayout.setCenter(listadoControles);
@@ -36,7 +42,7 @@ public class RootController {
 			// Cargamos el archivo Controles Dinámicos
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(RootController.class.getResource("MoviesOverview.fxml"));
-			AnchorPane listadoControles = (AnchorPane) loader.load();
+			BorderPane listadoControles = (BorderPane) loader.load();
 			// Se sitúa en el centro del diseño principal
 			rootLayout.setCenter(listadoControles);
 
@@ -65,12 +71,10 @@ public class RootController {
 		try {
 			// Cargamos el archivo Controles Dinámicos
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(RootController.class.getResource("PersonOverview.fxml"));
+			loader.setLocation(RootController.class.getResource("LoginOverview.fxml"));
 			AnchorPane listadoControles = (AnchorPane) loader.load();
 			// Se sitúa en el centro del diseño principal
-			System.out.println( listadoControles.toString());
-
-			this.rootLayout.setCenter(listadoControles);
+			rootLayout.setCenter(listadoControles);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -79,16 +83,16 @@ public class RootController {
 
 	@FXML
 	void salir(ActionEvent event) {
-		rootLayout.setCenter(null);
+		// Se elimina el contenido del nodo central
+    	rootLayout.setCenter(null);	
 	}
 
-
-	@FXML
-	void initialize() {
-
+	public BorderPane getRootLayout() {
+		return rootLayout;
 	}
 
-	public void setRootLayout(BorderPane rootLayout2) {
-		this.rootLayout = rootLayout2;
-	}
+	public void setRootLayout(BorderPane rootLayout) {
+		this.rootLayout = rootLayout;
+	}	
+	
 }

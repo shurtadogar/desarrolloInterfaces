@@ -61,6 +61,7 @@ public class PersonOverviewController {
 
     @FXML
     void addPerson(ActionEvent event) {
+    	
     	String firstName = this.firstNameText.getText();
     	String lastName = this.lastNameText.getText();
     	String city = this.cityChoice.getValue();
@@ -94,24 +95,28 @@ public class PersonOverviewController {
 
     }
     
-    private ObservableList<Person> persons;
+    private ObservableList<Person> persons = FXCollections.observableArrayList(
+    	    new Person("Jacob", "Smith", "New York", "Estados Unidos", "jacob.smith@example.com", "pass" ,"30"),
+    	    new Person("Sebastian", "Hurtado", "Madrid", "España", "shurtado@example.com", "pass" ,"28044"),
+    	    new Person("Jade", "Smith", "Paris", "Francia", "jade.smith@example.com", "pass" ,"2580")
+    );
     
     @FXML
     void initialize() {
-    	persons = FXCollections.observableArrayList();
+    	
+    	// Controles de JavaFX a los que se añaden directamente los items 
+    	// Ítems del ChoiceBox
+        cityChoice.getItems().addAll("Madrid", "Barcelona", "Sevilla", "Valencia", "Galicia", 
+        		"Alicante", "Leon", "Cadiz", "Malaga"); 
+        countryChoice.getItems().addAll("España", "Estados Unidos", "Reino Unido", "Francia", "Alemania", 
+        		"Portugal", "Italia"); 
+        
     	this.FirstColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	this.LastColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
     	this.countryColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
     	this.cityColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
     	this.pcodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-    	
-    	Person pers1 = new Person("Sebastian","Hurtado","Madrid","España","shurtado@gmail.com","password","28044");
-    	Person pers2 = new Person("Andres","Guzman","Madrid","España","klkmanin@gmail.com","password","28044");
-    	Person pers3 = new Person("Aimane","Shakur","Madrid","España","cnh23@gmail.com","password","28044");
-    	Person pers4 = new Person("Adrian","Rodelgo","Madrid","España","rodel@gmail.com","password","28044");
-    	this.persons.add(pers1);
-    	this.persons.add(pers2);
-    	this.persons.add(pers3);
-    	this.persons.add(pers4);
+    	// Se rellena la tabla con objetos de la clase Person
+    	personTable.setItems(persons); 
     }
 }

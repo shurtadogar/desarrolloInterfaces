@@ -1,18 +1,16 @@
 package ch.makery.address.view;
 
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import ch.makery.address.model.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 
 public class MoviesOverviewController  {
 
@@ -20,178 +18,37 @@ public class MoviesOverviewController  {
 	private ResourceBundle resources;
 
 	@FXML
-	private TextField descriptionText;
-
-	@FXML
-	private TextField directorText;
-
-	@FXML
-	private TableColumn<Movie, String> genderColumn;
-
-	@FXML
-	private TextField genderText;
-
-	@FXML
-	private TableView<Movie> movieTable;
-
-	@FXML
-	private TableColumn<Movie, String> titleColumn;
-
-	@FXML
-	private TextField titleText;
-
-	@FXML
-	private TextField yearText;
+    private TreeView<String> listMovies;
 
 	private ObservableList<Movie> movies;
-
-	/**
-	 * Método para inicializar el controlador que se llama cuando se carga el FXML
-	 */
+	
 	@FXML
-	private void initialize() {   	
-
+	void initialize() {
+		
 		movies = FXCollections.observableArrayList();
-		// Asignamos columnas y datos de la tabla
-		// Se inicializan las cuatro columnas
-		this.titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-    	this.genderColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+		
+		Movie mov1 = new Movie("Scary Movie","Comedia", 1997);
+    	Movie mov2 = new Movie("Fast and Furious","Accion", 1997);
+    	Movie mov3 = new Movie("Expediente Warren","Terror", 1997);
+    	Movie mov4 = new Movie("Spiderman","Accion", 1997);
+    	this.movies.add(mov1);
+    	this.movies.add(mov2);
+    	this.movies.add(mov3);
+    	this.movies.add(mov4);
     	
-    	Movie pers1 = new Movie("Scary Movie","Comedia");
-    	Movie pers2 = new Movie("Fast and Furious","Accion");
-    	Movie pers3 = new Movie("Expediente Warren","Terror");
-    	Movie pers4 = new Movie("Spiderman","Accion");
-    	this.movies.add(pers1);
-    	this.movies.add(pers2);
-    	this.movies.add(pers3);
-    	this.movies.add(pers4);
-
-	}
-
-	@FXML
-	void addMovie(ActionEvent event) {
-		try {
-
-			// Obtengo los datos del formulario
-			String title = this.titleText.getText();
-			String gender = this.genderText.getText();
-
-			// Creo una movie
-			Movie mov = new Movie(title, gender);
-
-			// Compruebo si la movie esta en el lista
-			if (!this.movies.contains(mov)) {
-				// Lo añado a la lista
-				this.movies.add(mov);
-				// Seteo los items
-				this.movieTable.setItems(movies);
-
-				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-				alert.setHeaderText(null);
-				alert.setTitle("Info");
-				alert.setContentText("movie añadida");
-				alert.showAndWait();
-			} else {
-
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setHeaderText(null);
-				alert.setTitle("Error");
-				alert.setContentText("La movie existe");
-				alert.showAndWait();
-			}
-		} catch (NumberFormatException e) {
-
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setHeaderText(null);
-			alert.setTitle("Error");
-			alert.setContentText("Formato incorrecto");
-			alert.showAndWait();
-		}
-	}
-
-	@FXML
-	void eliminarMovie(ActionEvent event) {
-		// Obtengo la movie seleccionada
-		Movie mov = this.movieTable.getSelectionModel().getSelectedItem();
-
-		// Si la movie es nula, lanzo error
-		if (mov == null) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setHeaderText(null);
-			alert.setTitle("Error");
-			alert.setContentText("Debes seleccionar una movie");
-			alert.showAndWait();
-		} else {
-
-			// La elimino de la lista
-			this.movies.remove(mov);
-			// Refresco la lista
-			this.movieTable.refresh();
-
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setHeaderText(null);
-			alert.setTitle("Info");
-			alert.setContentText("movie eliminada");
-			alert.showAndWait();
-
-		}
-	}
-
-	@FXML
-	void modificarMovie(ActionEvent event) {
-		// Obtengo la movie seleccionada
-		Movie mov = this.movieTable.getSelectionModel().getSelectedItem();
-
-		// Si la movie es nula, lanzo error
-		if (mov == null) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			alert.setHeaderText(null);
-			alert.setTitle("Error");
-			alert.setContentText("Debes seleccionar una movie");
-			alert.showAndWait();
-		} else {
-
-			try {
-				// Obtengo los datos del formulario
-				String title = this.titleText.getText();
-				String gender = this.genderText.getText();
-
-				// Creo una movie
-				Movie aux = new Movie(title, gender);
-
-				// Compruebo si la movie esta en el lista
-				if (!this.movies.contains(aux)) {
-
-					// Modifico el objeto
-					mov.setTitle(aux.getTitle());
-					mov.setGender(aux.getGender());
-
-					// Refresco la tabla
-					this.movieTable.refresh();
-
-					Alert alert = new Alert(Alert.AlertType.INFORMATION);
-					alert.setHeaderText(null);
-					alert.setTitle("Info");
-					alert.setContentText("movie modificada");
-					alert.showAndWait();
-
-				} else {
-
-					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setHeaderText(null);
-					alert.setTitle("Error");
-					alert.setContentText("La movie existe");
-					alert.showAndWait();
-				}
-			} catch (NumberFormatException e) {
-
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setHeaderText(null);
-				alert.setTitle("Error");
-				alert.setContentText("Formato incorrecto");
-				alert.showAndWait();
-			}
-
-		}
+    	// TreeView con icono y 4 ítems
+    	TreeItem<String> rootItem = new TreeItem<String> ("Estrenos");
+    	rootItem.setExpanded(true);
+    	
+    	List<String> treeListItems = new ArrayList<String>(Arrays.asList(mov1.getTitle(),mov2.getTitle(),mov3.getTitle(),mov4.getTitle()));
+    	
+    	// Nodos del TreeView
+        for (String item : treeListItems) {
+            TreeItem<String> treeItem = new TreeItem<String>(item);            
+            rootItem.getChildren().add(treeItem);
+        }     
+        
+        listMovies.setRoot(rootItem);
+    	
 	}
 }

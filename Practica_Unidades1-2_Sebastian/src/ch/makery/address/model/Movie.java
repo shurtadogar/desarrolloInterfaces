@@ -6,14 +6,14 @@ public class Movie {
 	private String  title;
 	private String  gender;
 	private String  description;
-	private int year;
+	private Integer year;
 	private String director;
 
 	public Movie() {
 		
 	}
 	
-	public Movie(String title, String gender, String description, int year, String director) {
+	public Movie(String title, String gender, String description, Integer year, String director) {
 		super();
 		this.title = title;
 		this.gender = gender;
@@ -22,12 +22,12 @@ public class Movie {
 		this.director = director;
 	}
 	
-	public Movie(String title, String gender) {
+	public Movie(String title, String gender, Integer year) {
 		super();
 		this.title = title;
 		this.gender = gender;
 		this.description = "some description";
-		this.year = 2000;
+		this.year = year;
 		this.director = "some director";
 	}
 
@@ -43,7 +43,7 @@ public class Movie {
 		return description;
 	}
 
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
@@ -63,7 +63,7 @@ public class Movie {
 		this.description = description;
 	}
 
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
