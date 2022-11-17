@@ -11,18 +11,17 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.MoviesOverviewController">
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="300.0" fitWidth="700.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <ImageView fitHeight="350.0" fitWidth="650.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                <image>
                   <Image url="@../../../../../img/peli.png" />
                </image>
             </ImageView>
-            <GridPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <GridPane AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="227.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="476.0" minWidth="10.0" prefWidth="379.0" />
@@ -55,26 +54,30 @@
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Label>
-                  <Label fx:id="titleLabel" text="Label" GridPane.columnIndex="1" />
-                  <Label fx:id="genderLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="descriptionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="yearLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="directorLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="titleLabel" text="Label" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="genderLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="descriptionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="yearLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="directorLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
                </children>
             </GridPane>
          </children></AnchorPane>
    </center>
-   <top>
-      <AnchorPane prefHeight="50.0" style="-fx-background-color: #CEFCFF;" BorderPane.alignment="CENTER">
-         <children>
-            <Text layoutX="351.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PELICULAS" AnchorPane.leftAnchor="351.0" AnchorPane.topAnchor="11.41796875">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-   </top>
    <left>
       <TableView fx:id="moviesTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
