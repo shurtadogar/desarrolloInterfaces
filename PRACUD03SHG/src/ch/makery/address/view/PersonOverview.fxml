@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #CEFCFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.PersonOverviewController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane style="-fx-background-color: #CEFCFF;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRO NUEVOS CLIENTES" textAlignment="JUSTIFY" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <GridPane prefHeight="430.0" AnchorPane.topAnchor="30.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="0.0" text="Name" />
+                        <Label text="Surname" GridPane.rowIndex="1" />
+                        <Label text="City" GridPane.rowIndex="3" />
+                        <Label text="Country" GridPane.rowIndex="2" />
+                        <Label text="Email" GridPane.rowIndex="4" />
+                        <Label text="Password" GridPane.rowIndex="5" />
+                        <TextField fx:id="firstNameText" promptText="Name..." GridPane.columnIndex="1" />
+                        <TextField fx:id="lastNameText" promptText="Surname..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="emailText" promptText="example@example.com" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <PasswordField fx:id="passwordText" text="password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <ChoiceBox fx:id="countryChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ChoiceBox fx:id="cityChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Postal Code" GridPane.rowIndex="6" />
+                        <TextField fx:id="postalCodeText" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane>
+               <children>
+                  <HBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#addPerson" text="New.." />
+                        <Button mnemonicParsing="false" onAction="#editPerson" text="Edit.." />
+                        <Button mnemonicParsing="false" onAction="#deletePerson" text="Delete" />
+                     </children>
+                  </HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DATOS DEL CLIENTE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="personTable" layoutX="-5.0" layoutY="49.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                    <columns>
+                      <TableColumn fx:id="FirstColumn" maxWidth="-1.0" minWidth="70.0" prefWidth="-1.0" text="Name" />
+                      <TableColumn fx:id="LastColumn" maxWidth="-1.0" minWidth="70.0" prefWidth="-1.0" text="Last Name" />
+                        <TableColumn fx:id="cityColumn" maxWidth="-1.0" minWidth="70.0" prefWidth="-1.0" text="City" />
+                        <TableColumn fx:id="countryColumn" maxWidth="-1.0" minWidth="70.0" prefWidth="-1.0" text="Country" />
+                        <TableColumn fx:id="pcodeColumn" maxWidth="-1.0" minWidth="70.0" prefWidth="-1.0" text="Postal Code" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
