@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -80,6 +82,17 @@ public class RootController {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+    private void about() {
+    	Alert infoAbout = new Alert(AlertType.INFORMATION);
+    	
+    	infoAbout.setTitle("127.0.0.1");
+    	infoAbout.setHeaderText("Acerca de...");
+    	infoAbout.setContentText("Autor: Sebastian Hurtado Garcia");	       
+    	
+    	infoAbout.show();
+    }
 
 	@FXML
 	private void exit(ActionEvent event) {

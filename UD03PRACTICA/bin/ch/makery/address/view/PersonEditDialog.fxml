@@ -64,8 +64,8 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="nameText" GridPane.columnIndex="1" />
-            <TextField fx:id="lastNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="firstNameText" GridPane.columnIndex="1" />
+            <TextField fx:id="lastNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ChoiceBox fx:id="cityChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="countryChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="emailText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
