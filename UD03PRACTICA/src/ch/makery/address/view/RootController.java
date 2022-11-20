@@ -2,13 +2,16 @@ package ch.makery.address.view;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
+
+import ch.makery.address.RootLayout;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class RootController {
 
@@ -16,15 +19,26 @@ public class RootController {
 	private ResourceBundle resources;
 
 	private BorderPane rootLayout;
-	
+
+	private RootLayout mainApp;
+
+	private Stage dialogStage;
 
 	@FXML
 	void initialize() {
 
 	}
 
+	public void setMainApp(RootLayout mainApp) {
+		this.mainApp = mainApp; 
+	}
+
+	public RootLayout getMainApp() {
+		return mainApp;
+	}
+
 	@FXML
-	void addMovie(ActionEvent event) {
+	private void addMovie(ActionEvent event) {
 		try {
 			// Cargamos el archivo Controles Dinámicos
 			FXMLLoader loader = new FXMLLoader();
@@ -39,7 +53,7 @@ public class RootController {
 	}
 
 	@FXML
-	void verCartelera(ActionEvent event) {
+	private void verCartelera(ActionEvent event) {
 		try {
 			// Cargamos el archivo Controles Dinámicos
 			FXMLLoader loader = new FXMLLoader();
@@ -54,7 +68,7 @@ public class RootController {
 	}
 
 	@FXML
-	void addPerson(ActionEvent event) {
+	private void addPerson(ActionEvent event) {
 		try {
 			// Cargamos el archivo Controles Dinámicos
 			FXMLLoader loader = new FXMLLoader();
@@ -69,7 +83,7 @@ public class RootController {
 	}
 
 	@FXML
-	void loginPerson(ActionEvent event) {
+	private void loginPerson(ActionEvent event) {
 		try {
 			// Cargamos el archivo Controles Dinámicos
 			FXMLLoader loader = new FXMLLoader();
@@ -82,20 +96,28 @@ public class RootController {
 			e.printStackTrace();
 		}
 	}
-	
-	@FXML
-    private void about() {
-    	Alert infoAbout = new Alert(AlertType.INFORMATION);
-    	
-    	infoAbout.setTitle("127.0.0.1");
-    	infoAbout.setHeaderText("Acerca de...");
-    	infoAbout.setContentText("Autor: Sebastian Hurtado Garcia");	       
-    	
-    	infoAbout.show();
-    }
 
 	@FXML
-	private void exit(ActionEvent event) {
+	private void about(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(PersonOverviewController.class.getResource("AboutOverview.fxml"));
+			AnchorPane listadoControles = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("About Pioflix");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			Scene scene = new Scene(listadoControles);
+			dialogStage.setScene(scene);
+
+			dialogStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@FXML
+	private void exit() {
 		System.exit(0);
 	}
 
@@ -106,5 +128,12 @@ public class RootController {
 	public void setRootLayout(BorderPane rootLayout) {
 		this.rootLayout = rootLayout;
 	}	
-	
+
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;		
+	}
+
+	public Stage getDialogStage() {
+		return dialogStage;
+	}
 }

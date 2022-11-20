@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class RootLayout extends Application {
-
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -16,7 +16,7 @@ public class RootLayout extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(RootLayout.class.getResource("view/RootLayout.fxml"));
 			BorderPane rootLayout = (BorderPane) loader.load();
-
+			
 			RootController rootController = loader.getController();
 			rootController.setRootLayout(rootLayout);
 
@@ -30,7 +30,7 @@ public class RootLayout extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

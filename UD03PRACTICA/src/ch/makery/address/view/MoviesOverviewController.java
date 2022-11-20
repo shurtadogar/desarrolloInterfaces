@@ -46,9 +46,9 @@ public class MoviesOverviewController  {
     private TreeView<String> listMovies;
 
 	private ObservableList<Movie> movies = FXCollections.observableArrayList(
-			new Movie("Scary Movie", "Comedia", 2000),
-			new Movie("Fast and Furious", "Accion", 2001),
-			new Movie("Expediente Warren", "Terror", 2013)
+			new Movie("Scary Movie", "Comedia","A group of hapless teens harboring a guilty secret are stalked by an equally bumbling serial killer in this parody of 1990s horror movies.", 2000, "Keenen Ivory Wayans"),
+			new Movie("Fast and Furious", "Accion", "Una misteriosa banda de delincuentes se dedica a robar camiones en marcha desde vehículos deportivos.", 2001, "Rob Cohen"),
+			new Movie("Expediente Warren", "Terror", "Basada en una historia real documentada por los reputados demonólogos Ed y Lorraine Warren.", 2013, "Michael Chaves")
 
 			);
 	
@@ -77,7 +77,7 @@ public class MoviesOverviewController  {
     }
 	
 	@FXML
-	void initialize() {
+	void initialize() {		
 		
 		this.titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
     	this.genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
@@ -85,11 +85,6 @@ public class MoviesOverviewController  {
     	// Se rellena la tabla con objetos de la clase Person
     	moviesTable.setItems(movies); 
     	
-      	// TODO Versión con map 
-    	// Se crea un objecto que herede de ObservableValue
-    	/*firstNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("firstName").toString()));
-    	lastNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("lastName").toString()));*/
-        
         // Inicializa en blanco los detalles de una persona
         showMovieDetails(null);
         

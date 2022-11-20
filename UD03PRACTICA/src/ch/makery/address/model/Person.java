@@ -11,6 +11,9 @@ public class Person {
 	private String password;
 	private Integer postalCode;
 	
+	public Person() {
+		
+	}
 	
 	public Person(String firstName, String lastName, String country, String city, String email, String password,
 			Integer postalCode) {

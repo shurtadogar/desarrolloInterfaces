@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #CEFCFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.PersonOverviewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #CEFCFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.PersonOverviewController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -78,7 +78,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Text>
-                  <TableView fx:id="personTable" layoutX="-5.0" layoutY="49.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                  <TableView fx:id="personTable" layoutX="-5.0" layoutY="49.0" onMouseClicked="#selectPerson" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
                     <columns>
                       <TableColumn fx:id="FirstColumn" maxWidth="-1.0" minWidth="70.0" prefWidth="-1.0" text="Name" />
                       <TableColumn fx:id="LastColumn" maxWidth="-1.0" minWidth="70.0" prefWidth="-1.0" text="Last Name" />
