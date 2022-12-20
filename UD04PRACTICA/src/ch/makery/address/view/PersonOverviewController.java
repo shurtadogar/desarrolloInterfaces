@@ -75,7 +75,8 @@ public class PersonOverviewController {
 	/* 
 	 * Añadimos los ítems a la tabla como estático y así pueden acceder otras clases 
 	 */
-	private static ObservableList<Persona> personData = FXCollections.observableArrayList();
+	
+	private static ObservableList<Persona> usersData = FXCollections.observableArrayList();
 
 	private static ObservableList<String> cityData = FXCollections.observableArrayList();
 
@@ -83,7 +84,6 @@ public class PersonOverviewController {
 
 	@FXML
 	void initialize() {
-
 		String[] country = new String[]{"Spain", "Brazil", "France", "Italy", "USA"};              
 		countryData.addAll(Arrays.asList(country));
 		countryChoice.getItems().addAll(countryData);
@@ -98,16 +98,22 @@ public class PersonOverviewController {
 		this.cityColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
 		this.pcodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
 
-		if (personData.isEmpty()) {
-			personData.add(new Persona("Sebastian","Hurtado","Madrid", "España", "shurtado@gmail.com", "12345", 28044));
-			personData.add(new Persona("Aimane","Sakur","Madrid", "España", "aimanesakur@gmail.com", "12345", 28044));
-			personData.add(new Persona("Adrian","Rodelgo","Madrid", "España", "rodel@gmail.com", "12345", 28044));
+		if (usersData.isEmpty()) {
+			usersData.add(new Persona("Sebastian","Hurtado","Madrid", "Spain", "shurtado@gmail.com", "12345", 28044));
+			usersData.add(new Persona("Aimane","Sakur","Madrid", "Spain", "aimanesakur@gmail.com", "12345", 28044));
+			usersData.add(new Persona("Adrian","Rodelgo","Madrid", "Spain", "rodel@gmail.com", "12345", 28044));
+			usersData.add(new Persona("Moises","Jimenez","Madrid", "Spain", "shurtado@gmail.com", "12345", 28044));
+			usersData.add(new Persona("Andres","Guzman","Madrid", "Spain", "aimanesakur@gmail.com", "12345", 28044));
+			usersData.add(new Persona("Jose","Martinez","Madrid", "Spain", "rodel@gmail.com", "12345", 28044));
+			usersData.add(new Persona("Juan","Sanchez","Madrid", "Spain", "shurtado@gmail.com", "12345", 28044));
+			usersData.add(new Persona("Lucas","Pelucas","Madrid", "Spain", "aimanesakur@gmail.com", "12345", 28044));
+			usersData.add(new Persona("Francisco","Alvarez","Madrid", "Spain", "rodel@gmail.com", "12345", 28044));
 		}
-
-		personTable.setItems(personData);
-
+		
 		// Inicializa en blanco los detalles de una persona
 		showPersonDetails(null);
+		
+		personTable.setItems(usersData);
 
 		// Se añade un manejador para que cuando se seleccione una fila de la tabla
 		// se muestren sus datos a la derecha
@@ -136,15 +142,14 @@ public class PersonOverviewController {
 	}
 
 
-
-	public static ObservableList<Persona> getPersonData() {
-		return personData;
+	public static ObservableList<Persona> getUsersData() {
+		return usersData;
 	}
 
 
 
-	public static void setPersonData(ObservableList<Persona> personData) {
-		PersonOverviewController.personData = personData;
+	public static void setUsersData(ObservableList<Persona> usersData) {
+		PersonOverviewController.usersData = usersData;
 	}
 
 
@@ -217,9 +222,9 @@ public class PersonOverviewController {
 
 			Persona pers = new Persona(firstName, lastName, country, city, email, password, postalCode);
 
-			if(!personData.contains(pers)) {
-				personData.add(pers);
-				this.personTable.setItems(personData);
+			if(!usersData.contains(pers)) {
+				usersData.add(pers);
+				this.personTable.setItems(usersData);
 
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setHeaderText(null);
@@ -266,7 +271,7 @@ public class PersonOverviewController {
 
 				Persona aux = new Persona(firstName, lastName, country, city, email, password, postalCode);
 
-				if(!personData.contains(aux)) {
+				if(!usersData.contains(aux)) {
 					pers.setFirstName(firstName);
 					pers.setLastName(lastName);
 					pers.setCountry(country);

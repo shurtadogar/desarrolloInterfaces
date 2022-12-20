@@ -37,7 +37,7 @@ public class LoginController {
 
 	private Stage dialogStage;
 
-	private ObservableList<Persona> usuarios = FXCollections.observableArrayList(PersonOverviewController.getPersonData());
+	private ObservableList<Persona> usuarios = FXCollections.observableArrayList(PersonOverviewController.getUsersData());
 
 	@FXML
 	void initialize() {
